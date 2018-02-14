@@ -5,14 +5,8 @@
 namespace tFFD {
 	//Create a mesh object from the point clowd and triangulation
 	MeshtFFD::MeshtFFD(const vector<vec>* in_pnts, const vector<Triangle>* in_tris) {
-		pnts = new vector<vec>();
-		for (const auto& pnt : *in_pnts) {
-			pnts->push_back(pnt);
-		}
-		tris = new vector<Triangle>();
-		for (const auto& triangle : *in_tris) {
-			tris->push_back(triangle);
-		}
+		pnts = new vector<vec>(*in_pnts);
+		tris = new vector<Triangle>(*in_tris);
 	}
 
 	//Create a mesh object reading an OFF file
@@ -45,14 +39,8 @@ namespace tFFD {
 
 	//Copy constructor
 	MeshtFFD::MeshtFFD(const MeshtFFD& mesh) {
-		pnts = new vector<vec>();
-		for (const auto& pnt : *mesh.getPnts()) {
-			pnts->push_back(pnt);
-		}
-		tris = new vector<Triangle>();
-		for (const auto& triangle : *mesh.getTris()) {
-			tris->push_back(triangle);
-		}
+		pnts = new vector<vec>(*mesh.getPnts());
+		tris = new vector<Triangle>(*mesh.getTris());
 	}
 
 	//Assignment operator 
@@ -62,14 +50,8 @@ namespace tFFD {
 		{
 			delete pnts;
 			delete tris;
-			pnts = new vector<vec>();
-			for (const auto& pnt : *mesh.getPnts()) {
-				pnts->push_back(pnt);
-			}
-			tris = new vector<Triangle>();
-			for (const auto& triangle : *mesh.getTris()) {
-				tris->push_back(triangle);
-			}
+			pnts = new vector<vec>(*mesh.getPnts());
+			tris = new vector<Triangle>(*mesh.getTris());
 		}
 		return *this;
 	}

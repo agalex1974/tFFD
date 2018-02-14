@@ -43,6 +43,7 @@ namespace tFFD {
 
 		MeshtFFD mesh(pntsProtDef, prototype.getTris());
 		delete pntsProtDef;
+		delete[] sumk;
 		return mesh;
 	}
 
